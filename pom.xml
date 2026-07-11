@@ -8,8 +8,8 @@
 PhoenixTestAutomationFramework</description>
 
 <properties>
-	<maven.compiler.source>11</maven.compiler.source>
-	<maven.compiler.target>11</maven.compiler.target>
+	<maven.compiler.source>14</maven.compiler.source>
+	<maven.compiler.target>14</maven.compiler.target>
 </properties>
 <dependencies>
 <!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
@@ -43,5 +43,10 @@ PhoenixTestAutomationFramework</description>
     <version>5.5.6</version>
     <scope>compile</scope>
 </dependency>
+	<dependency>
+		<groupId>APITestingWithRestAssured</groupId>
+		<artifactId>APITestingWithRestAssured</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
 </dependencies>
 </project>
