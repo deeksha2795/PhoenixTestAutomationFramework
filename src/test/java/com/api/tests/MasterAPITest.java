@@ -35,7 +35,7 @@ public class MasterAPITest {
 			.body("data",Matchers.hasKey("mst_oem"))
 			.body("data", Matchers.hasKey("mst_model"))
 			.body("$",Matchers.hasKey("message"))
-			.body("$",Matchers.hasKey("data"))
-			.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Response-Schema\\MasterAPIResponseSchema-FD.json"));
+			.body("$", Matchers.hasKey("data"))
+			.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("Response-Schema/MasterAPIResponseSchema-FD.json"));
 	}
 }
