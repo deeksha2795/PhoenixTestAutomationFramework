@@ -10,6 +10,7 @@ import static com.api.utils.AuthTokenProvider.*;
 
 import static com.api.constants.Role.*;
 import com.api.utils.ConfigManager;
+import com.api.utils.SpecUtil;
 
 import static com.api.utils.ConfigManagerOLD.*;
 
@@ -22,19 +23,12 @@ public class UserDetailsAPITest {
 	@Test
 	public void userDetailsAPITest() throws IOException
 	{
-		Header authHeader = new Header("Authorization",getToken(FD));
 		given()
-			.baseUri(ConfigManager.getProperty("BASE_URI"))
-			.and()
-			.header(authHeader)
-			.and()
-			.accept(ContentType.JSON)
+			.spec(SpecUtil.requestSpecWithAuth(FD))
 		.when()
 			.get("userdetails")
 		.then()
-			.log().all()
-			.statusCode(200)
-			.time(Matchers.lessThan(3000L));
+			.spec(SpecUtil.responseSpec_OK());
 			
 	}
 }

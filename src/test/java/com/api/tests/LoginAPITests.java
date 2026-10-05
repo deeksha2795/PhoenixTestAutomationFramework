@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import com.api.pojo.UserCredentials;
 import com.api.utils.ConfigManager;
+import com.api.utils.SpecUtil;
 
 import static com.api.utils.ConfigManagerOLD.*;
 
@@ -23,24 +24,11 @@ public class LoginAPITests {
 	public void loginAPITest() throws IOException
 	{
 		given()
-			.baseUri(ConfigManager.getProperty("BASE_URI"))
-			.and()
-			.contentType(ContentType.JSON)
-			.and()
-			.accept(ContentType.JSON)
-			.and()
-			.body(usercredentials)
-			.log().uri()
-			.log().method()
-			.log().headers()
-			.log().body()
+			.spec(SpecUtil.requestSpec(usercredentials))//here .spec applies the pre-built RequestSpecification that bundles up reusable settings so that we dont have to call them again and again every test
 		.when()
 			.post("login")
 		.then()
-		.log().all()
-			.statusCode(200)
-			.time(lessThan(5000L))
-			.and()
+			.spec(SpecUtil.responseSpec_OK())
 			.body("message", equalTo("Success"));
 			
 		
