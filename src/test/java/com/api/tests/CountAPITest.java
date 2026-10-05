@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.*;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
+import com.api.utils.SpecUtil;
+
 import static com.api.constants.Role.*;
 import static com.api.utils.AuthTokenProvider.*;
 import static com.api.utils.ConfigManager.*;
@@ -19,20 +21,11 @@ public class CountAPITest {
 	public void verifyCountAPIResponse()
 	{
 		given()
-			.baseUri(getProperty("BASE_URI"))
-			.and()
-			.header("Authorization", getToken(FD))
-			.log().uri()
-			.log().method()
-			.log().headers()
+			.spec(SpecUtil.requestSpecWithAuth(FD))
 		.when()
 			.get("/dashboard/count")
 		.then()
-			.log().all()
-			.statusCode(200)
-			.and()
-			.time(lessThan(1000L))
-			.and()
+			.spec(SpecUtil.responseSpec_OK())
 			.body("message",equalTo("Success"))
 			.body("data",Matchers.notNullValue())
 			.body("data.size()",Matchers.equalTo(3))
@@ -46,15 +39,11 @@ public class CountAPITest {
 	public void countAPI_MissingAuthToken() {
 		
 		given()
-		.baseUri(getProperty("BASE_URI"))
-		.and()
-		.log().uri()
-		.log().method()
-		.log().headers()
+		.spec(SpecUtil.requestSpec())
 	.when()
 		.get("/dashboard/count")
 	.then()
-		.statusCode(401);
+		.spec(SpecUtil.responseSpec_TEXT(401));
 	
 	}
 }
