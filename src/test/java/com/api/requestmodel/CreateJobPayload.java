@@ -1,5 +1,5 @@
 
-package com.api.pojo;
+package com.api.requestmodel;
 
 import java.util.Arrays;
 import java.util.List;

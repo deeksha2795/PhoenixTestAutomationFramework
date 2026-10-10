@@ -4,13 +4,14 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import com.api.pojo.CreateJobPayload;
-import com.api.pojo.Customer;
-import com.api.pojo.CustomerAddress;
-import com.api.pojo.CustomerProduct;
-import com.api.pojo.Problems;
+import com.api.requestmodel.CreateJobPayload;
+import com.api.requestmodel.Customer;
+import com.api.requestmodel.CustomerAddress;
+import com.api.requestmodel.CustomerProduct;
+import com.api.requestmodel.Problems;
 import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
+import com.api.utils.DateTimeUtil;
 import com.api.utils.SpecUtil;
 
 import io.restassured.http.ContentType;
@@ -32,7 +33,7 @@ public class CreateJobAPITest {
 		
 		Customer customer = new Customer("Deeksha", "Bajad", "9893325433", "", "deeksha.shirke27@gmail.com", "");
 		CustomerAddress customerAddress  = new CustomerAddress("401", "Galaxy", "Stree-4", "Near Main Square", "Omkar Nagar", "440024", "India", "Maharashtra");
-		CustomerProduct customerProduct = new CustomerProduct("2025-04-30T18:30:00.000Z", "112989649322923", "112989649322923", "112989649322923", "2025-04-30T18:30:00.000Z", 1, 1);
+		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "112989049322923", "112989049322923", "112989049322923", DateTimeUtil.getTimeWithDaysAgo(10), 1, 1);
 		Problems problems = new Problems("2", "Battery drains too quickly");
 		List<Problems> problemList = new ArrayList();
 		problemList.add(problems);
