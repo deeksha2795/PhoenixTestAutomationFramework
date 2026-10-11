@@ -2,7 +2,7 @@ package com.api.requestmodel;
 
 public record Problems (
 
-	String id,
+	int id,
 	String remark)
 	{
 }
